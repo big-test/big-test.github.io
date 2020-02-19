@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Diagri | Nhật ký Nông nghiệp </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Angular CSS File -->
+  <link href="lib/angular/css/angular-material.min.css" rel="stylesheet">
+  
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="lib/style.css" rel="stylesheet">
+</head>
+
+<body ng-app="myApp" ng-controller="MyController">
+
+  <!-- Header Section -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="Diagri-Logo" width="100px" /></a>
+      <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto m-0 text-center">
+          <li class="nav-item">
+            <a id="menu-home" class="nav-link text-secondary" href="index.html">VỀ DIAGRI</a>
+          </li>
+
+          <li class="nav-item">
+            <a id="menu-contact" class="nav-link text-secondary" href="contact.html">LIÊN HỆ HỢP TÁC</a>
+          </li>
+
+          <li class="nav-item">
+            <a id="menu-posts" class="nav-link text-secondary" href="posts.html">BÀI VIẾT</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Header Section -->
+<!-- ========== CONTACT SECTION -->
+
+<style type="text/css">
+  #menu-contact {
+    color: #eee !important;
+  }
+</style>
+
+<!-- Section Intro -->
+<div style="height: 60px;"></div>
+<!-- End Section Intro -->
+
+<!-- Section How to Co-operate -->
+<section id="cooperate" class="wow fadeInUp pt-3 mb-3">
+    <div class="container">
+        <header class="section-header">
+          <h3>Các bước hợp tác</h3>
+      </header>
+      <img src="img/cooperate.png" width="100%">
+  </div>
+</section>
+<!-- End Section How to Co-operate -->
+
+<!-- Section Contact Form -->
+<section class="jumbotron wow fadeInUp badge-light">
+  <div class="container pb-2 pt-2">
+    <div class="section-header">
+      <h3>GỬI PHẢN HỒI</h3>
+  </div>
+</div>
+
+<div class="form">
+    <div id="message_status"></div>
+    <form action="#" method="post" role="form" class="contactForm text-danger">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" name="name" class="form-control" id="name" placeholder="Tên của bạn" data-rule="minlen:4" data-msg="Tên phải chứa ít nhất 04 ký tự!" />
+          <div class="validation"></div>
+      </div>
+      <div class="form-group col-md-6">
+          <input type="email" class="form-control" name="email" id="email" placeholder="Email của bạn" data-rule="email" data-msg="Vui lòng nhập Email hợp lệ!" />
+          <div class="validation"></div>
+      </div>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" name="subject" id="subject" placeholder="Chủ đề" data-rule="minlen:8" data-msg="Tên chủ đề chứa ít nhất 08 ký tự!" />
+    <div class="validation"></div>
+</div>
+<div class="form-group">
+    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Vui lòng để lại phản hồi!" placeholder="Bạn có phản hồi gì?"></textarea>
+    <div class="validation"></div>
+</div>
+<div class="text-center"><button class="btn btn-info" type="submit">Gửi phản hồi</button></div>
+</form>
+</div>
+</div>
+</section>
+<!-- End Contact Form-->
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      "use strict";
+
+  //Contact
+  $('form.contactForm').submit(function() {
+    var f = $(this).find('.form-group'),
+    ferror = false,
+    emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
+
+    f.children('input').each(function() { // run all inputs
+
+      var i = $(this); // current input
+      var rule = i.attr('data-rule');
+
+      if (rule !== undefined) {
+        var ierror = false; // error flag for current input
+        var pos = rule.indexOf(':', 0);
+        if (pos >= 0) {
+          var exp = rule.substr(pos + 1, rule.length);
+          rule = rule.substr(0, pos);
+      } else {
+          rule = rule.substr(pos + 1, rule.length);
+      }
+
+      switch (rule) {
+          case 'required':
+          if (i.val() === '') {
+              ferror = ierror = true;
+          }
+          break;
+
+          case 'minlen':
+          if (i.val().length < parseInt(exp)) {
+              ferror = ierror = true;
+          }
+          break;
+
+          case 'email':
+          if (!emailExp.test(i.val())) {
+              ferror = ierror = true;
+          }
+          break;
+
+          case 'checked':
+          if (!i.attr('checked')) {
+              ferror = ierror = true;
+          }
+          break;
+
+          case 'regexp':
+          exp = new RegExp(exp);
+          if (!exp.test(i.val())) {
+              ferror = ierror = true;
+          }
+          break;
+      }
+      i.next('.validation').html((ierror ? (i.attr('data-msg') !== undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
+  }
+});
+    f.children('textarea').each(function() { // run all inputs
+
+      var i = $(this); // current input
+      var rule = i.attr('data-rule');
+
+      if (rule !== undefined) {
+        var ierror = false; // error flag for current input
+        var pos = rule.indexOf(':', 0);
+        if (pos >= 0) {
+          var exp = rule.substr(pos + 1, rule.length);
+          rule = rule.substr(0, pos);
+      } else {
+          rule = rule.substr(pos + 1, rule.length);
+      }
+
+      switch (rule) {
+          case 'required':
+          if (i.val() === '') {
+              ferror = ierror = true;
+          }
+          break;
+
+          case 'minlen':
+          if (i.val().length < parseInt(exp)) {
+              ferror = ierror = true;
+          }
+          break;
+      }
+      i.next('.validation').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
+  }
+});
+    if (ferror) return false;
+    else var str = $(this).serialize();
+    $.ajax({
+      type: "POST",
+      url: "contactform/contactform.php",
+      data: str,
+      success: function(msg) {
+        // alert(msg);
+        if (msg == 'OK') {
+          $("#sendmessage").addClass("show");
+          $("#errormessage").removeClass("show");
+          $('.contactForm').find("input, textarea").val("");
+      } else {
+          $("#sendmessage").removeClass("show");
+          $("#errormessage").addClass("show");
+          $('#errormessage').html(msg);
+      }
+
+  }
+});
+    return false;
+});
+
+});
+
+</script>
+
+<!-- ====== END OF CONTACT SECTION -->
+
+<!-- Section Footer -->
+<footer class="bg-light pt-3">
+  <div class="container-fluid bg-light pt-3">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 footer-info text-center">
+        <img src="img\logo.png" width="200" /><br>
+        <em>Nâng cao giá trị sản phẩm OCOP bằng truy xuất nguồn gốc uy tín tự động sản xuất.</em>
+        <p class="download-buttons text-center">
+          <strong>Cài đặt ứng dụng ngay hôm nay!</strong>
+          <br>
+          <a href="https://play.google.com/store/apps/details?id=com.bigdatatrace.diagri&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo&zarsrc=1303"><img src="img/download-android.png" height="50"></a>
+          <a href="https://apps.apple.com/us/app/n%C3%B4ng-d%C3%A2n/id1292135408?utm_campaign=zalo&utm_medium=zalo&utm_source=zalo&zarsrc=1303"><img src="img/download-app-store.png" height="58" style="margin-bottom: 8px;"></a>
+        </p>
+      </div>
+
+      <div class="col-md-6 col-sm-12 footer-contact">
+        <hr class="d-md-none d-sm-block">
+        <h5 class="text-info">Thông tin chi tiết vui lòng liên hệ:</h5>
+        <p>
+          <i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Địa chỉ:</strong><br>
+          - Cơ sở 1: Tòa nhà N4B Lê Văn Lương, Quận Thanh Xuân, Tp. Hà Nội<br>
+          - Cơ sở 2: 2 - 4 Alexandre, Phường Bến Nghé, Quận 01, Tp. Hồ Chí Minh<br>
+          <i class="fa fa-phone" aria-hidden="true"></i> <strong>Điện thoại:</strong><br> +84 90 345 2367 | +84 83 599 22 77<br>
+          <i class="fa fa-envelope" aria-hidden="true"></i> <strong>Email:</strong> bigdatatrace@gmail.com<br>
+          <i class="fa fa-internet-explorer" aria-hidden="true"></i> <strong>Website:</strong> <a href="https://www.bigdatatrace.com">https://www.bigdatatrace.com</a><br>
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container-fluid">
+    <div class="text-center pb-1">Copyright © 2020 BIG DATATRACE. All Rights Reserved</div>
+    <div class="social-links text-center">
+      <a href="https://www.facebook.com/Bigdatatracecom-1477742622306123/" class="text-info"><i class="fa fa-facebook"></i></a> 
+      <a href="mailto:bigdatatrace@gmail.com;nguyentruongson69@gmail.com" class="text-info"><i class="fa fa-envelope"></i></a> 
+      <a href="https://www.youtube.com/channel/UC2pXL5FhhtAJ9EmkjBwoxCw?view_as=subscriber" class="text-info"><i class="fa fa-youtube"></i></a>
+
+    </div>
+  </div>
+</footer>
+<!-- End of Section Footer -->
+<a title="Về đầu trang" href="#" class="btn btn-info back-to-top" style="position: fixed; bottom: 1em; right: 1em; z-index: 999;"><i class="fa fa-chevron-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery-migrate.min.js"></script>
+<script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/superfish/hoverIntent.js"></script>
+<script src="lib/superfish/superfish.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/isotope/isotope.pkgd.min.js"></script>
+<script src="lib/lightbox/js/lightbox.min.js"></script>
+<script src="lib/angular/js/angular-1.5.min.js"></script>
+<script src="lib/angular/js/angular-animate.min.js"></script>
+<script src="lib/angular/js/angular-aria.min.js"></script>
+<script src="lib/angular/js/angular-messages.min.js"></script>
+<script src="lib/angular/js/angular-route.min.js"></script>
+<script src="lib/angular/js/angular-material.min.js"></script>
+<script src="lib/angular/js/dirPagination.js"></script>
+
+<!-- Main Javascript File -->
+<script src="lib/main.js"></script>
+</body>
+</html>

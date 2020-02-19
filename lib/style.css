@@ -1,0 +1,84 @@
+.social-links .fa-facebook, .social-links .fa-envelope, .social-links .fa-youtube {
+	font-size: 25px;
+	padding: 5px 10px;
+}
+
+/* Sections Header */
+
+.section-header h3 {
+  font-size: 32px;
+  color: #1696d3;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 700;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section-header h3::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
+}
+
+.section-header h3::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #1696d3;
+  bottom: 0;
+  left: calc(50% - 20px);
+}
+
+.section-header p {
+  text-align: center;
+  padding-bottom: 30px;
+  color: #333;
+}
+
+/* End Sections Header */
+
+div.hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+  text-align: center;
+  height: 0px;
+  line-height: 0px;
+}
+
+.hr-title {
+  background-color: #fff;
+}
+
+/* Responsive code */
+.imgInPost {
+  width: 450px;
+}
+@media screen and (max-width: 480px) {
+  .imgInPost {
+    width: 90%;
+  }
+}
+
+/* Pagination Style */
+.pagination {
+  font-size: 18px;
+  border: 2px solid #1696d3;
+  display: inline-block;
+}
+li.ng-scope {
+  list-style: none;
+  float: left;
+  padding: 0px 8px;
+  margin: 2px;
+  font-weight: bold;
+}

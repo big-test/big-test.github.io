@@ -11,12 +11,12 @@
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- Angular CSS File -->
+  <link href="lib/angular/css/angular-material.min.css" rel="stylesheet">
+  
   <!-- Libraries CSS Files -->
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -25,682 +25,348 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
-</head>
+  <link href="lib/style.css" rel="stylesheet">
+</head> <!-- End head -->
 
-<body>
+<!-- ====== START BODY ====== -->
+<body ng-app="myApp" ng-controller="MyController">
+  <!-- MENU ON TOP -->
+  <nav class="navbar navbar-expand-lg bg-dark fixed-top shadow" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="Diagri-Logo" width="100px" /></a>
+      <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto m-0 text-center">
+          <li class="nav-item">
+            <a id="menu-home" class="nav-link text-secondary" href="index.html">VỀ DIAGRI</a>
+          </li>
 
-  <!--==========================
-    HEADER SECTION
-  ============================-->
-  <header id="header">
-    <div class="container-fluid">
+          <li class="nav-item">
+            <a id="menu-contact" class="nav-link text-secondary" href="contact.html">LIÊN HỆ HỢP TÁC</a>
+          </li>
 
-      <div id="logo" class="pull-left">
-      	<!-- Uncomment below if you prefer to use text instead of an image logo -->
-        <!-- <h1><a href="#intro" class="scrollto">DIAGRI</a></h1> -->
-        <a href="#intro"><img src="img/logo.png" alt="" title="" height="30" /></a>
+          <li class="nav-item">
+            <a id="menu-posts" class="nav-link text-secondary" href="posts.html">BÀI VIẾT</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav><!-- END MENU ON TOP -->
+
+  <!-- =============== MAIN CONTENT ================ -->
+  <!-- Section Intro -->
+  <section style="background: url('img/call-to-action-bg.jpg'); background-size: cover; background-attachment: fixed;">
+    <div class="row" style="padding: 150px 0px; background: rgba(0, 0, 0, .5); margin: 0px;">
+      <!-- LEFT PART -->
+      <div class="col-md-6 text-center wow fadeInRight" data-wow-delay="0.2s">
+        <p><img src="img/logo.png" width="250px"></p>
+        <h3 style="color: white;">Nâng cao giá trị sản phẩm OCOP bằng truy xuất nguồn gốc uy tín tự động sản xuất</h3>
+        <div class="row counters mt-4">
+          <div class="col-4 text-center text-light">
+            <h3 class="text-info" data-toggle="counter-up">{{cntCustomer}}</h3> KHÁCH HÀNG
+          </div>
+
+          <div class="col-4 text-center text-light">
+            <h3 class="text-info" data-toggle="counter-up">{{cntCompany}}</h3> DOANH NGHIỆP
+          </div>
+
+          <div class="col-4 text-center text-light">
+            <h3 class="text-info" data-toggle="counter-up">{{cntFarmer}}</h3> HỘ NÔNG DÂN
+          </div>
+        </div>
+        <h5 class="download-buttons mt-4">
+          <div class="mb-2"><strong class="text-light">Ứng dụng đã có mặt trên Google Play & App Store. TẢI NGAY!!!</strong></div>
+          <a href="https://play.google.com/store/apps/details?id=com.bigdatatrace.diagri&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo&zarsrc=1303">
+            <img src="img/download-android.png" height="50">
+          </a>
+          <a href="https://apps.apple.com/us/app/n%C3%B4ng-d%C3%A2n/id1292135408?utm_campaign=zalo&utm_medium=zalo&utm_source=zalo&zarsrc=1303">
+            <img src="img/download-app-store.png" height="58" style="margin-bottom: 8px;">
+          </a>
+        </h5>
       </div>
 
-      <!-- nav-menu-container -->
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li><a href="#intro">Trang chủ</a></li>
-          <li class="menu-has-children">
-          	<a class="sf-with-ul" href="#featured-services">Ứng dụng</a>
-          	<ul style="display: none;">
-              	<li><a href="#featured-services">Giá trị của Diagri</a></li>
-          		<li><a href="#services">Tính năng của Diagri</a></li>
-            </ul>
-          </li>
-          <li><a href="#cooperate">Liên hệ hợp tác</a></li>
-          <li><a href="#" data-toggle="modal" data-target="#login">Đăng nhập</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Form đăng nhập -->
-  <div class="modal fade" id="login" role="dialog">
-	    <div class="modal-dialog">
-	      <!-- Modal content-->
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <h4 class="modal-title main-color">ĐĂNG NHẬP</h4>
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        </div>
-	        <div class="modal-body">
-	          	<form accept-charset="utf-8" method="post" action="lib/login.php">
-      					<div class="modal-content modal-content-fix">
-      						<div class="modal-body">
-      							<div class="input-group mb-3">
-      							  <div class="input-group-prepend">
-      							    <span class="input-group-text" id="basic-addon1"> <i class="fa fa-facebook" aria-hidden="true"></i> </span>
-      							  </div>
-      							  <button class="form-control"><a href="#">ĐĂNG NHẬP BẰNG FACEBOOK</a></button>
-      							</div>
-
-      							<div class="hr">
-      							    <span class="hr-title"> hoặc bằng email </span>
-      							</div>
-
-      							<div class="form-group">
-      								<label for="email">Email/Số điện thoại<span class="color-red">*</span></label>
-      								<input data-error-message="Vui lòng nhập email hoặc số điện thoại!" required="required" name="username" class="form-control" placeholder="mail@address.com">
-      							</div>
-      							<div class="form-group">
-      								<label for="password">Mật khẩu<span class="color-red">*</span></label>
-      								<input required="required" name="password" type="password" class="form-control" placeholder="Mật khẩu">
-      							</div>
-      							<!-- <div class="form-group">
-      								<label>Xác minh<span class="color-red">*</span></label>
-      								<div id="captcha_login"><div style="width: 100%; height: 78px; text-align:center;"><div><iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcTlLcUAAAAAP9gr_ruJUCmVxIGvym_G8PZyi7O&amp;co=aHR0cHM6Ly9iaWdkYXRhdHJhY2UuY29tOjQ0Mw..&amp;hl=vi&amp;v=75nbHAdFrusJCwoMVGTXoHoM&amp;size=normal&amp;cb=b6ukhccqf21x" width="300" height="78" role="presentation" name="a-c0ogpkciz8co" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div></div>
-      								<input value="1" id="input_login" class="hide"> -->
-      							</div>
-      							<div class="form-group text-center">
-      								<a href="#">Quên mật khẩu</a> | 
-      								<a href="#">Tạo tài khoản mới</a>
-      								<button type="submit" class="btn btn-primary btn-block mt-2">Đăng nhập</button>
-      							</div>
-      						</div>
-      				</form>
-	        </div>
-	      </div>
-	      
-	    </div>
-  	</div>
-
-  <!--==========================
-    INTRO SECTION
-  ============================-->
-  <section id="intro" style="background: url('img/call-to-action-bg.jpg'); background-size: cover; background-attachment: fixed;">
-  	<div class="row" style="padding: 150px 0px; background: rgba(0, 0, 0, .5); margin: 0px;">
-
-  		<!-- LEFT PART -->
-    	<div class="col-md-6 text-center wow fadeInRight" data-wow-delay="0.2s">
-    		<p><img src="img/logo.png" width="250px"></p>
-            <h3 style="color: white;">Nâng cao giá trị sản phẩm OCOP bằng truy xuất nguồn gốc uy tín</h3>
-            <div class="row counters">
-				<div class=" col-6 text-center">
-		            <span data-toggle="counter-up">123274</span>
-		            <p>Lượt tải xuống</p>
-  				</div>
-
-		        <div class="col-6 text-center">
-		            <span data-toggle="counter-up">1809</span>
-		            <p>Đánh giá</p>
-  				</div>
-			</div>
-            <p class="download-buttons">
-                <a href="https://play.google.com/store/apps/details?id=com.bigdatatrace.diagri&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo&zarsrc=1303"><img src="img/download-android.png" height="50"></a>
-                <a href="https://apps.apple.com/us/app/n%C3%B4ng-d%C3%A2n/id1292135408?utm_campaign=zalo&utm_medium=zalo&utm_source=zalo&zarsrc=1303"><img src="img/download-app-store.png" height="58" style="margin-bottom: 8px;"></a>
-            </p>
-    	</div>
-
-    	<!-- RIGHT PART -->
-    	<div class="col-md-6 text-center wow fadeInRight" id="phone-intro">
-    		<img src="img\facts-img.gif">
-    	</div>
+      <!-- RIGHT PART -->
+      <div class="col-md-6 d-sm-none d-md-block text-center wow fadeInRight" id="phone-intro">
+        <img src="img\facts-img.gif" width="250px">
+      </div>
     </div>
   </section>
+  <!-- End Section Intro -->
 
-  <main id="main">
-
-    <!--==========================
-      Gia Tri Dỉagri
-    ============================-->
-	<section id="featured-services">
-      <div class="container text-center">
-      	<header class="section-header pt-3">
-          <h3 class="text-white">Giá trị Diagri mang lại</h3>
-        </header>
-        <div class="row text-white">
-          <div class="col-lg-4 box wow flipInX" data-wow-delay="0s">
-            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
-            <h4 class="title">Truy xuất quá trình dịch chuyển tạo ra sản phẩm</h4>
-          </div>
-
-          <div class="col-lg-4 box wow flipInX" data-wow-delay="0.2s">
-          	<i class="fa fa-star" aria-hidden="true"></i>
-            <h4 class="title">Nông dân, nông trại dễ dàng sử dụng</h4>
-          </div>
-
-          <div class="col-lg-4 box wow flipInX" data-wow-delay="0.4s">
-          	<i class="fa fa-check-square-o" aria-hidden="true"></i>
-            <h4 class="title">Minh bạch, chuẩn hóa theo TXNG quốc tế GS1: 2017</h4>
-          </div>
-          
-        </div>
-        <div>
-        	<video width="80%" controls autoplay>
-			  <source src="video/GT_Diagri.mp4" type="video/mp4">
-			</video>
-        	<br>
-          	<a href="#" class="cta-btn" data-toggle="modal" data-target="#howItWorks">TÌM HIỂU THÊM</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Diagri mang lại giá trị bằng cách nào -->
-  	
-	<div class="modal fade" id="howItWorks" role="dialog">
-	    <div class="modal-dialog">
-	    
-	      <!-- Modal content-->
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <h4 class="modal-title main-color"> Diagri mang lại giá trị như thế nào?</h4>
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        </div>
-	        <div class="modal-body">
-	          	<h3>01 - Số hóa</h3>
-			    <ul>
-			      	<li>Lập kế hoạch mùa vụ, QT SX</li>
-			      	<li>Ghi nhật ký bằng điện thoại</li>
-			      	<li>Kiểm soát và điều khiển thiết bị IOT</li>
-			    </ul>
-			    <hr>
-			    <h3>02 - Hiệu quả</h3>
-			    <ul>
-			      	<li>Nông dân, Nông trại thực thiện công việc hàng ngày bằng công cụ thông minh</li>
-			      	<li>Không phát sinh thêm công đoạn hay chi phí bổ sung</li>
-			    </ul>
-				<hr>
-			    <h3>03 - Uy tín</h3>
-			    <ul>
-			      	<li>Tem TXNG động, mỗi tem là duy nhất không trùng lặp</li>
-			      	<li>Thể hiện thông tin chi tiết đến từng sản phẩm, từng nông dân, từng tọa độ và diện tích, công đoạn</li>
-			    </ul>
-	        </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-	        </div>
-	      </div>
-	      
-	    </div>
-  	</div>
-
-  	<!-- Giao diện ứng dụng -->
-  	<section id="#" class="wow fadeInUp" style="padding-top: 20px;">
-      <div class="container">
-        <header class="section-header">
-          <h3>Giao diện ứng dụng</h3>
-        </header>
-        <div class="owl-carousel clients-carousel">
-          <img src="img/intro-carousel/1.png" data-toggle="tooltip"  title="Màn hình khởi động Diagri" alt="Màn hình khởi động Diagri">
-          <img src="img/intro-carousel/2.png" data-toggle="tooltip" data-html="true" title="Màn hình đăng nhập" alt="Màn hình đăng nhập">
-          <img src="img/intro-carousel/3.png" data-toggle="tooltip" data-html="true" title="Menu chức năng của Diagri" alt="Menu chức năng của Diagri">
-          <img src="img/intro-carousel/4.png" data-toggle="tooltip" data-html="true" title="Xem danh sách ruộng trực tiếp trên Diagri" alt="Xem danh sách ruộng trực tiếp trên Diagri">
-          <img src="img/intro-carousel/5.png" data-toggle="tooltip" data-html="true" title="Hệ thống điều khiển IoT" alt="Hệ thống điều khiển IoT">
-          <img src="img/intro-carousel/6.png" data-toggle="tooltip" data-html="true" title="Chi tiết IoT về Độ ẩm" alt="Chi tiết IoT về Độ ẩm">
-          <img src="img/intro-carousel/7.png" data-toggle="tooltip" data-html="true" title="Danh sách ruộng của nông dân" alt="Danh sách ruộng của nông dân">
-          <img src="img/intro-carousel/8.png" data-toggle="tooltip" data-html="true" title="Xác định vị trí, đo ruộng ngay trên điện thoại" alt="Xác định vị trí, đo ruộng ngay trên điện thoại">
-          <img src="img/intro-carousel/9.png" data-toggle="tooltip" data-html="true" title="Biểu đồ báo cáo nông dân và ruộng" alt="Biểu đồ báo cáo nông dân và ruộng">
-          <img src="img/intro-carousel/10.png" data-toggle="tooltip" data-html="true" title="Truy xuất nguồn gốc qua tem QR" alt="Truy xuất nguồn gốc qua tem QR">
-          <img src="img/intro-carousel/11.png" data-toggle="tooltip" data-html="true" title="Thông tin chi tiết quan trọng của sản phẩm" alt="Thông tin chi tiết quan trọng của sản phẩm">
-        </div>
-      </div>
-    </section>
-    <!-- END SECTION -->
-
-    <section id="services" style="background: #EEE;">
-      <div class="container">
-
-        <header class="section-header wow fadeInUp">
-          <h3>Tính năng</h3>
-        </header>
-
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
-            <p class="description">Hỗ trợ hộ nông dân, doanh nghiệp được cấp mã số vùng trồng, chứng chỉ Viet Gap... nhanh chóng, uy tín, đảm bảo tin cậy khi thông quan xuất khẩu chính ngạch sang Trung Quốc, Mỹ, Nhật, Châu Âu, ...</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
-            <p class="description">Số hóa thông tin, dữ liệu, hiện trạng, kế hoạch mùa vụ, nhật ký điện tử để nâng cao chất lượng, năng lực cạnh tranh của nông dân, xây dựng chuỗi liên kết bền vững. Gắn sản xuất với tiêu thụ trên Siêu chợ 4.0</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-paper-outline"></i></div>
-            <p class="description">Xây dựng cơ sở dữ liệu tin cậy có khả năng dự báo, cảnh báo sớm về sản lượng thu hoạch, khả năng tiêu thụ và hạn chế rủi ro.</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-            
-            <p class="description">Sản phẩm được nhận diện thương hiệu, truy xuất nguồn gốc theo dữ liệu thực từ sản xuất ra sản phẩm, sơ chế, chế biến đóng gói, vận chuyển và tiêu thụ với giá trị cao hơn.</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
-            <p class="description">Hệ thống điều khiển mô hình IoT; ứng dụng công nghệ cao; tưới tiết kiệm; kiểm soát nhiệt độ, độ ẩm, ánh sáng, PH, EC... để tăng năng suất chất lượng; giảm chi phí nhân công, vật tư; kiểm soát dịch bệnh.</p>
-          </div>
-
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" style="text-align: center;">
-          	<h4><a href="#featured-services"><strong>CÀI ĐẶT ỨNG DỤNG</strong></a></h4>
-          	<p><img style="border-radius: 10px;" src="img\getApp.png" width="50%"></p>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- #services -->
-
-    <!-- =======================
-    	Các bước hợp tác
-    	======================== -->
-    <section id="cooperate" class="wow fadeInUp" style="padding: 20px;">
-      <div class="container">
-        <header class="section-header">
-          <h3>Các bước hợp tác</h3>
-        </header>
-        <div class="owl-carousel clients-carousel wow fadeInUp">
-          <div class="co-step">
-          	<div class="co-step-num"><span>01</span></div>
-          	<div class="co-step-detail">Tìm hiểu về Diagri (Diagri là gì, tính năng, điểm nổi bật, ...)</div>
-          </div>
-          <div class="co-step">
-          	<div class="co-step-num"><span>02</span></div>
-          	<div class="co-step-detail">
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Điền biểu mẫu<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Thống nhất mục tiêu<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Các bước tiến hành
-          	</div>
-          </div>
-          <div class="co-step">
-          	<div class="co-step-num"><span>03</span></div>
-          	<div class="co-step-detail">
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Cung cấp quy trình<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Các chứng chỉ<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Khảo sát phân tích 
-          	</div>
-          </div>
-          <div class="co-step">
-          	<div class="co-step-num"><span>04</span></div>
-          	<div class="co-step-detail">
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Thiết lập tài khoản<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Nhập liệu Demo<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Ký HĐ dịch vụ
-          	</div>
-          </div>
-          <div class="co-step">
-          	<div class="co-step-num"><span>05</span></div>
-          	<div class="co-step-detail">
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Tập huấn<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Chuẩn hóa dữ liệu
-          	</div>
-          </div>
-          <div class="co-step">
-          	<div class="co-step-num"><span>06</span></div>
-          	<div class="co-step-detail">
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Vận hành<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> In tem<br>
-          		<i class="fa fa-dot-circle-o" aria-hidden="true"></i> Lập báo cáo
-          	</div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-    <!-- END SECTION -->
-
-    <!--==========================
-      BÀI VIẾT MỚI CẬP NHẬT
-    ============================-->
-    <section id="recent-post">
-      <div class="container">
-        <header class="section-header">
-          <h3 class="pt-3">BÀI VIẾT MỚI CẬP NHẬT</h3>
-        </header>
-
-        <div class="container row mx-auto">
-            
-        	<!-- Bài viết mới nhất -->
-            <div class="col-md-6">
-              <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col-auto d-none d-lg-block" style="width: 200px; height: 200px; background: url('img/call-to-action-bg.jpg'); background-size: cover;">
-                </div>
-                <div class="col p-4 d-flex flex-column position-static">
-                <h5 class="mb-0"><a href="baiviet/demo-post.html">Tiêu đề bài viết</a></h5>
-                <div class="text-muted"><span>2 phút trước</span></div>
-                <p class="card-text mb-auto">Phần nội dung tóm tắt của bài viết ở đây. Phần nội dung tóm tắt của bài viết ở đây...</p>
-                <a href="#" class="stretched-link">Đọc tiếp</a>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Bài viết trễ hơn -->
-            <div class="col-md-6">
-              <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col-auto d-none d-lg-block" style="width: 200px; height: 200px; background: url('img/call-to-action-bg.jpg'); background-size: cover;">
-                </div>
-                <div class="col p-4 d-flex flex-column position-static">
-                <h5 class="mb-0"><a href="baiviet/demo-post.html">Tiêu đề bài viết</a></h5>
-                <div class="text-muted"><span>5 phút trước</span></div>
-                <p class="card-text mb-auto">Phần nội dung tóm tắt của bài viết ở đây. Phần nội dung tóm tắt của bài viết ở đây...</p>
-                <a href="#" class="stretched-link">Đọc tiếp</a>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </section><!-- #recent-post -->
-    
-
-    <!-- KHÁCH HÀNG NÓI -->
-    <section id="testimonials" class="section-bg wow fadeInUp">
-      <div class="container">
-
-        <header class="section-header">
-          <h3>Khách hàng nói</h3>
-        </header>
-
-        <div class="owl-carousel testimonials-carousel">
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-1.jpg" class="testimonial-img" alt="">
-                <h3>Anh Công</h3>
-	            <h4>Nông dân</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Công cụ tuyệt vời giúp người nông dân lập kế hoạch, ghi nhật ký điện tử và truy xuất nguồn gốc nông sản!
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-2.jpg" class="testimonial-img" alt="">
-            	<h3>Ông Lê Văn Ba</h3>
-	            <h4>Giám đốc HTX Dịch vụ Nông nghiệp tổng hợp An Phú</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Công ty vừa có sản xuất tại trang trại, vừa có đặt hàng các hộ nông dân liên kết và có hệ thống bán lẻ toàn quốc. Diagri có thể giúp tôi thuận tiện hơn trong việc giải quyết các yêu cầu đó.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-3.jpg" class="testimonial-img" alt="">
-            	<h3>Người dùng mạng</h3>
-	            <h4>không rõ</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Qui trình trồng từng loại cây có thể thay đổi theo mong muốn của chúng tôi.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-4.jpg" class="testimonial-img" alt="">
-            	<h3>Người dùng mạng</h3>
-	            <h4>không rõ</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Dùng Diagri trên điện thoại thuận lợi khi lên kế hoạch vụ.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-          <div class="testimonial-item">
-            <img src="img/testimonial-5.jpg" class="testimonial-img" alt="">
-            	<h3>Người dùng mạng</h3>
-	            <h4>không rõ</h4>
-            <p>
-              <img src="img/quote-sign-left.png" class="quote-sign-left" alt="">
-              Dữ liệu tin cậy có khả năng dự báo, cảnh báo sớm về sản lượng thu hoạch, khả năng tiêu thụ và hạn chế rủi ro.
-              <img src="img/quote-sign-right.png" class="quote-sign-right" alt="">
-            </p>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- #testimonials -->
-
-    <!--==========================
-      About Us Section
-    ============================-->
-    <section id="about">
-      <div class="container">
-
-        <header class="section-header">
-          <h3>Về chúng tôi</h3>
-        </header>
-
-        <div class="row about-cols">
-
-          <div class="col-md-6 wow fadeInUp">
-            <div class="about-col">
-              <div class="img">
-                <img src="img/about-mission.jpg" alt="" class="img-fluid">
-                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-              </div>
-              <h2 class="title"><a href="#">Sứ mệnh</a></h2>
-              <p>
-                	&rsaquo; Xây dựng nền tảng, hệ sinh thái mở, thích nghi cho mỗi tổ chức, cá nhân làm nông nghiệp minh bạch theo cách riêng của mình. 
-				<br/>	&rsaquo; Nâng cao năng lực cạnh tranh để gia tăng giá trị nông sản Việt Nam.
-				<br/>	&rsaquo; Luôn cập nhật, ứng dụng công nghệ, tri thức tiến bộ mới vào trong sản xuất kinh doanh nông nghiệp.
-              </p>
-            </div>
-          </div>
-
-          <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="about-col">
-              <div class="img">
-                <img src="img/about-vision.jpg" alt="" class="img-fluid">
-                <div class="icon"><i class="ion-ios-eye-outline"></i></div>
-              </div>
-              <h2 class="title"><a href="#">Tầm nhìn</a></h2>
-              <p>
-                	&rsaquo; Trở thành doanh nghiệp hạt nhân để hỗ trợ, thúc đẩy nông dân có vị trí xứng đáng trên chuỗi giá trị toàn cầu.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- #about -->
-
-    <!--==========================
-      Team Section
-    ============================-->
- <!--   <section id="team">
-      <div class="container">
-        <div class="section-header wow fadeInUp">
-          <h3>Đội ngũ</h3>
-          <p></p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp">
-            <div class="member">
-              <img src="img/team-1.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Ngô Huỳnh Ngọc Khánh</h4>
-                  <span>CEO</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="member">
-              <img src="img/team-2.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Nguyễn Nhật Thiện</h4>
-                  <span>Developer</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-            <div class="member">
-              <img src="img/team-3.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Nguyễn Hoàng Giang</h4>
-                  <span>CTO</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="member">
-              <img src="img/team-4.jpg" class="img-fluid" alt="">
-              <div class="member-info">
-                <div class="member-info-content">
-                  <h4>Nguyễn Trường Sơn</h4>
-                  <span>CSO</span>
-                  <div class="social">
-                    <a href=""><i class="fa fa-facebook"></i></a>
-                    <a href=""><i class="fa fa-google-plus"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
--->
-
-    <!--==========================
-      Contact Section
-    ============================-->
-    <section id="contact" class="section-bg wow fadeInUp">
-      <div class="container">
-
-        <div class="section-header">
-          <h3>Liên hệ</h3>
-          <p>Mọi thông tin phản hồi, quý khách vui lòng để lại bên dưới!</p>
-        </div>
-
-        
-        </div>
-
-        <div class="form">
-          <div id="sendmessage">Phản hồi của bạn đã được gửi đi, xin cảm ơn!</div>
-          <div id="errormessage"></div>
-          <form action="" method="post" role="form" class="contactForm">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Tên của bạn" data-rule="minlen:4" data-msg="Tên phải chứa ít nhất 04 ký tự!" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group col-md-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Email của bạn" data-rule="email" data-msg="Vui lòng nhập Email hợp lệ!" />
-                <div class="validation"></div>
-              </div>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Chủ đề" data-rule="minlen:8" data-msg="Tên chủ đề chứa ít nhất 08 ký tự!" />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Vui lòng để lại phản hồi!" placeholder="Bạn có phản hồi gì?"></textarea>
-              <div class="validation"></div>
-            </div>
-            <div class="text-center"><button type="submit">Gửi phản hồi</button></div>
-          </form>
-        </div>
-
-      </div>
-    </section><!-- #contact -->
-
-  </main>
-
-  <!--==========================
-    Footer
-  ============================-->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6 footer-info">
-          	<img src="img\logo.png" width="200" />
-            <div style="margin-top: 10px; text-indent: 20px;">Nâng cao giá trị sản phẩm OCOP bằng truy xuất nguồn gốc uy tín.</div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-links">
-            <h4>Điều hướng</h4>
-            <ul>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Trang chủ</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#featured-services">Giá trị Diagri</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#services">Tính năng</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="https://bigdatatrace.com/vi-vn/%C4%90i%E1%BB%81u-kho%E1%BA%A3n.html">Điều khoản</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-contact">
-            <h4>Công ty Cổ phần BIG DATATRACE</h4>
-            <p>
-              <strong><i class="fa fa-map-marker" aria-hidden="true"></i> Địa chỉ:</strong><br>
-              - Hà Nội: Tòa nhà N4B Lê Văn Lương, Quận Thanh Xuân<br>
-              - TP HCM: 14B Kỳ Đồng, Phường 09, Quận 03<br>
-              <strong><i class="fa fa-phone" aria-hidden="true"></i> Điện thoại:</strong> +84 90 345 2367 | +84 83 599 22 77<br>
-              <strong><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</strong> bigdatatrace@gmail.com<br>
-              <strong><i class="fa fa-internet-explorer" aria-hidden="true"></i> Website:</strong> <a href="https://www.bigdatatrace.com">https://www.bigdatatrace.com</a><br>
-            </p>
-
-            <div class="social-links">
-              <a href="https://www.facebook.com/Bigdatatracecom-1477742622306123/" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="mailto:bigdatatrace@gmail.com;nguyentruongson69@gmail.com" class="envelope"><i class="fa fa-envelope"></i></a>
-              <a href="https://www.youtube.com/channel/UC2pXL5FhhtAJ9EmkjBwoxCw?view_as=subscriber" class="youtube"><i class="fa fa-youtube"></i></a>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
+  <!-- Section Giao diện ứng dụng -->
+  <section id="#" class="wow fadeInUp pt-3">
     <div class="container">
-      <div class="copyright">
-      	Copyright &copy; 2019 <strong>BIG DATATRACE</strong>. All right reserved.
+      <header class="section-header mb-3">
+        <h3 >Giao diện ứng dụng</h3>
+      </header>
+      <div class="small text-center">(Vuốt sang phải để xem thêm!)</div>
+      <div class="owl-carousel screen-carousel">
+        <div class="screen wow fadeInUp" data-wow-delay="0.1s">
+          <img src="img/intro-carousel/1.png" data-toggle="tooltip"  title="Màn hình khởi động Diagri" alt="Màn hình khởi động Diagri">
+          <em>
+            > Màn hình khởi động Diagri
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="0.2s">
+          <img src="img/intro-carousel/2.png" data-toggle="tooltip" data-html="true" title="Màn hình đăng nhập" alt="Màn hình đăng nhập">
+          <em>
+            > Màn hình đăng nhập
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="0.3s">
+          <img src="img/intro-carousel/3.png" data-toggle="tooltip" data-html="true" title="Menu chức năng của Diagri" alt="Menu chức năng của Diagri">
+          <em>
+            > Menu chức năng của Diagri
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="0.4s">
+          <img src="img/intro-carousel/4.png" data-toggle="tooltip" data-html="true" title="Xem danh sách ruộng trực tiếp trên Diagri" alt="Xem danh sách ruộng trực tiếp trên Diagri">
+          <em>
+            > Xem danh sách ruộng trực tiếp trên Diagri
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="0.5s">
+          <img src="img/intro-carousel/5.png" data-toggle="tooltip" data-html="true" title="Hệ thống điều khiển IoT" alt="Hệ thống điều khiển IoT">
+          <em>
+            > Hệ thống điều khiển IoT
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="0.6s">
+          <img src="img/intro-carousel/6.png" data-toggle="tooltip" data-html="true" title="Chi tiết IoT về Độ ẩm" alt="Chi tiết IoT về Độ ẩm">
+          <em>
+            > Chi tiết IoT về Độ ẩm
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="0.7s">
+          <img src="img/intro-carousel/7.png" data-toggle="tooltip" data-html="true" title="Danh sách ruộng của nông dân" alt="Danh sách ruộng của nông dân">
+          <em>
+            > Danh sách ruộng của nông dân
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="0.8s">
+          <img src="img/intro-carousel/8.png" data-toggle="tooltip" data-html="true" title="Xác định vị trí, đo ruộng ngay trên điện thoại" alt="Xác định vị trí, đo ruộng ngay trên điện thoại">
+          <em>
+            > Xác định vị trí, đo ruộng ngay trên điện thoại
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="0.9s">
+          <img src="img/intro-carousel/9.png" data-toggle="tooltip" data-html="true" title="Biểu đồ báo cáo nông dân và ruộng" alt="Biểu đồ báo cáo nông dân và ruộng">
+          <em>
+            > Biểu đồ báo cáo nông dân và ruộng
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="1.0s">
+          <img src="img/intro-carousel/10.png" data-toggle="tooltip" data-html="true" title="Truy xuất nguồn gốc qua tem QR" alt="Truy xuất nguồn gốc qua tem QR">
+          <em>
+            > Truy xuất nguồn gốc qua tem QR
+          </em>
+        </div>
+
+        <div class="screen wow fadeInUp" data-wow-delay="1.1s">
+          <img src="img/intro-carousel/11.png" data-toggle="tooltip" data-html="true" title="Thông tin chi tiết quan trọng của sản phẩm" alt="Thông tin chi tiết quan trọng của sản phẩm">
+          <em>
+            > Thông tin chi tiết quan trọng của sản phẩm
+          </em>
+        </div>
       </div>
     </div>
-  </footer><!-- #footer -->
+  </section>
+  <!-- End Section Giao diện ứng dụng -->
+  <hr>
+  <!-- Section Tính năng -->
+  <section class="pt-3">
+    <div class="container">
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+      <header class="section-header wow fadeInUp">
+        <h3>Tính năng</h3>
+      </header>
 
-  <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/superfish/hoverIntent.js"></script>
-  <script src="lib/superfish/superfish.min.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
-  <script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+          <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
+          <p class="description">Hỗ trợ hộ nông dân, doanh nghiệp được cấp mã số vùng trồng, chứng chỉ Viet Gap... nhanh chóng, uy tín, đảm bảo tin cậy khi thông quan xuất khẩu chính ngạch sang Trung Quốc, Mỹ, Nhật, Châu Âu, ...</p>
+        </div>
+        <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+          <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
+          <p class="description">Số hóa thông tin, dữ liệu, hiện trạng, kế hoạch mùa vụ, nhật ký điện tử để nâng cao chất lượng, năng lực cạnh tranh của nông dân, xây dựng chuỗi liên kết bền vững. Gắn sản xuất với tiêu thụ trên Siêu chợ 4.0</p>
+        </div>
+        <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+          <div class="icon"><i class="ion-ios-paper-outline"></i></div>
+          <p class="description">Xây dựng cơ sở dữ liệu tin cậy có khả năng dự báo, cảnh báo sớm về sản lượng thu hoạch, khả năng tiêu thụ và hạn chế rủi ro.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+          <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
 
-  <!-- Main Javascript File -->
-  <script src="js/main.js"></script>
+          <p class="description">Sản phẩm được nhận diện thương hiệu, truy xuất nguồn gốc theo dữ liệu thực từ sản xuất ra sản phẩm, sơ chế, chế biến đóng gói, vận chuyển và tiêu thụ với giá trị cao hơn.</p>
+        </div>
+        <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+          <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+          <p class="description">Hệ thống điều khiển mô hình IoT; ứng dụng công nghệ cao; tưới tiết kiệm; kiểm soát nhiệt độ, độ ẩm, ánh sáng, PH, EC... để tăng năng suất chất lượng; giảm chi phí nhân công, vật tư; kiểm soát dịch bệnh.</p>
+        </div>
 
+        <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s" style="text-align: center;">
+         <h4><strong>CÀI ĐẶT ỨNG DỤNG</strong></h4>
+         <p><img style="border-radius: 10px;" src="img\getApp.png" width="50%"></p>
+       </div>
+     </div>
+
+   </div>
+ </section>
+ <!-- End Section Tính năng -->
+
+ <!-- Section Giá trị -->
+ <section style="background: url('img/valuable-bg.jpg'); background-size: cover; background-attachment: fixed;">
+  <div class="container-fluid text-center" style="background: rgba(0, 0, 0, .5); margin: 0;">
+    <header class="section-header pt-3">
+      <h3 class="text-white">Giá trị Diagri mang lại</h3>
+    </header>
+    <div class="row text-white">
+      <div class="col-lg-4 box wow flipInX" data-wow-delay="0s">
+        <i class="fa fa-lightbulb-o valuable-icon" aria-hidden="true"></i>
+        <h4 class="title">Truy xuất quá trình sản xuất tạo ra sản phẩm</h4>
+      </div>
+
+      <div class="col-lg-4 box wow flipInX" data-wow-delay="0.2s">
+        <i class="fa fa-star valuable-icon" aria-hidden="true"></i>
+        <h4 class="title">Nông dân, nông trại dễ dàng sử dụng</h4>
+      </div>
+
+      <div class="col-lg-4 box wow flipInX" data-wow-delay="0.4s">
+        <i class="fa fa-check-square-o valuable-icon" aria-hidden="true"></i>
+        <h4 class="title">Minh bạch, chuẩn hóa theo TXNG quốc tế GS1: 2017</h4>
+      </div>
+      <div class="text-center col-12 mb-3">
+        <a id="btn-HowItWorks" class="btn btn-info" onclick="displayHowItWorks();">TÌM HIỂU THÊM</a>
+      </div>
+    </div>
+    <div>
+
+      <div id="howItWorks" style="display: none; background: rgba(255, 255, 255, .8);" class="jumbotron text-left">
+        <h3>01 - Số hóa</h3>
+        <ul>
+          <li>Lập kế hoạch mùa vụ, quy trình sản xuất</li>
+          <li>Ghi nhật ký bằng điện thoại</li>
+          <li>Kiểm soát và điều khiển thiết bị <b>IoT</b></li>
+        </ul>
+
+        <h3>02 - Hiệu quả</h3>
+        <ul>
+          <li>Nông dân, Nông trại thực hiện công việc hàng ngày bằng <b>công cụ thông minh</b></li>
+          <li>Không phát sinh thêm công đoạn hay chi phí bổ sung</li>
+        </ul>
+
+        <h3>03 - Uy tín</h3>
+        <ul>
+          <li>Tem truy xuất nguồn gốc động, mỗi tem là duy nhất không trùng lặp.</li>
+          <li>Thể hiện thông tin Hợp tác xã, nông dân, vùng trồng.</li>
+          <li>Thể hiện thông tin sản phẩm, ngày đóng gói, hạn sử dụng, quy trình canh tác.</li>
+        </ul>
+      </div>
+      <video width="80%" controls>
+       <source src="video/GT_Diagri.mp4" type="video/mp4">
+       </video>
+     </div>
+   </div>
+ </section>
+ <!-- End Section Giá trị-->
+
+<style>
+  #menu-home {
+    color: #eee !important;
+  }
+  .screen {
+    padding: 5px 10px;
+  }
+
+  .screen > img {
+    border: 2px solid lightblue;
+    border-radius: 5px;
+  }
+
+  .valuable-icon {
+    font-size: 20px;
+  }
+</style>
+<!-- ================= END HOME SECTION =================== -->
+
+<!-- Section Footer -->
+<footer class="bg-light pt-3">
+  <div class="container-fluid bg-light pt-3">
+    <div class="row">
+      <div class="col-md-6 col-sm-12 footer-info text-center">
+        <img src="img\logo.png" width="200" /><br>
+        <em>Nâng cao giá trị sản phẩm OCOP bằng truy xuất nguồn gốc uy tín tự động sản xuất.</em>
+        <p class="download-buttons text-center">
+          <strong>Cài đặt ứng dụng ngay hôm nay!</strong>
+          <br>
+          <a href="https://play.google.com/store/apps/details?id=com.bigdatatrace.diagri&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo&zarsrc=1303"><img src="img/download-android.png" height="50"></a>
+          <a href="https://apps.apple.com/us/app/n%C3%B4ng-d%C3%A2n/id1292135408?utm_campaign=zalo&utm_medium=zalo&utm_source=zalo&zarsrc=1303"><img src="img/download-app-store.png" height="58" style="margin-bottom: 8px;"></a>
+        </p>
+      </div>
+
+      <div class="col-md-6 col-sm-12 footer-contact">
+        <hr class="d-md-none d-sm-block">
+        <h5 class="text-info">Thông tin chi tiết vui lòng liên hệ:</h5>
+        <p>
+          <i class="fa fa-map-marker" aria-hidden="true"></i> <strong>Địa chỉ:</strong><br>
+          - Cơ sở 1: Tòa nhà N4B Lê Văn Lương, Quận Thanh Xuân, Tp. Hà Nội<br>
+          - Cơ sở 2: 2 - 4 Alexandre, Phường Bến Nghé, Quận 01, Tp. Hồ Chí Minh<br>
+          <i class="fa fa-phone" aria-hidden="true"></i> <strong>Điện thoại:</strong><br> +84 90 345 2367 | +84 83 599 22 77<br>
+          <i class="fa fa-envelope" aria-hidden="true"></i> <strong>Email:</strong> bigdatatrace@gmail.com<br>
+          <i class="fa fa-internet-explorer" aria-hidden="true"></i> <strong>Website:</strong> <a href="https://www.bigdatatrace.com">https://www.bigdatatrace.com</a><br>
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="container-fluid">
+    <div class="text-center pb-1">Copyright © 2020 BIG DATATRACE. All Rights Reserved</div>
+    <div class="social-links text-center">
+      <a href="https://www.facebook.com/Bigdatatracecom-1477742622306123/" class="text-info"><i class="fa fa-facebook"></i></a> 
+      <a href="mailto:bigdatatrace@gmail.com;nguyentruongson69@gmail.com" class="text-info"><i class="fa fa-envelope"></i></a> 
+      <a href="https://www.youtube.com/channel/UC2pXL5FhhtAJ9EmkjBwoxCw?view_as=subscriber" class="text-info"><i class="fa fa-youtube"></i></a>
+
+    </div>
+  </div>
+</footer>
+<!-- End of Section Footer -->
+<a title="Về đầu trang" href="#" class="btn btn-info back-to-top" style="position: fixed; bottom: 1em; right: 1em; z-index: 999;"><i class="fa fa-chevron-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery-migrate.min.js"></script>
+<script src="lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/superfish/hoverIntent.js"></script>
+<script src="lib/superfish/superfish.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/isotope/isotope.pkgd.min.js"></script>
+<script src="lib/lightbox/js/lightbox.min.js"></script>
+<script src="lib/angular/js/angular-1.5.min.js"></script>
+<script src="lib/angular/js/angular-animate.min.js"></script>
+<script src="lib/angular/js/angular-aria.min.js"></script>
+<script src="lib/angular/js/angular-messages.min.js"></script>
+<script src="lib/angular/js/angular-route.min.js"></script>
+<script src="lib/angular/js/angular-material.min.js"></script>
+<script src="lib/angular/js/dirPagination.js"></script>
+
+<!-- Main Javascript File -->
+<script src="lib/main.js"></script>
 </body>
 </html>
